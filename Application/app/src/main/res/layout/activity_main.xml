@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/mainTitle"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:height="1px"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Car Partner"
+                android:visibility="visible"
+                tools:visibility="visible" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="14dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textTempratureValue"
+                android:layout_width="93dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Temprature：0℃" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="11dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="186dp"
+                android:layout_height="19dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textHumidityValue"
+                android:layout_width="237dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Humidity: 0" />
+
+            <Space
+                android:layout_width="201dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="155dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textCO2Value"
+                android:layout_width="177dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="CO2：0" />
+
+            <Space
+                android:layout_width="197dp"
+                android:layout_height="21dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notification State: yes" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="119dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="141dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnLEDOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="OpenLED"
+                android:text="LED ON"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/btnLEDOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="CloseLED"
+                android:text="LED OFF"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="399dp"
+            android:layout_height="227dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textGPS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textGPSValue"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GPS: " />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnNotifyOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Open Notification"
+                android:onClick="OpenNotification"
+                />
+
+            <Button
+                android:id="@+id/btnNotifyClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Close Notification"
+                android:onClick="CloseNotification"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
