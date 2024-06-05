@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
     public void mqtt_init_Connect() {
         try {
             //实例化mqtt_client，填入我们定义的serverUri和clientId，然后MemoryPersistence设置clientid的保存形式，默认为以内存保存
+            if(mqtt_client!= null)
+            {
+                mqtt_client.disconnect();
+            }
             mqtt_client = new MqttClient(serverUri, clientId, new MemoryPersistence());
             //创建并实例化一个MQTT的连接参数对象
             MqttConnectOptions options = new MqttConnectOptions();
@@ -114,26 +118,6 @@ public class MainActivity extends AppCompatActivity {
             });
             //连接mqtt服务器
             mqtt_client.connect();
-            // 创建线程监听MQTT是否连接，如果断开连接则重新连接
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            Thread.sleep(1000);
-                            if (!mqtt_client.isConnected()) {
-                                mqtt_client.disconnect();
-                                mqtt_client.connect();
-                                if(mqtt_client.isConnected()){
-                                    mqtt_client.subscribe(mqtt_sub_topic, 0);
-                                }
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }).start();
             mqtt_client.subscribe(mqtt_sub_topic, 0);
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish();
+            return;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createNotificationChannel();
@@ -184,6 +172,22 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
         mqtt_init_Connect();
+        // 创建线程监听mqtt连接状态
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                        if (!mqtt_client.isConnected()) {
+                            Reconnecte();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     /**
@@ -312,14 +316,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void Reconnecte(View view) {
-        try {
-            mqtt_client.connect();
-            makeToast("重新连接成功");
-        } catch (MqttException e) {
-            e.printStackTrace();
-            makeToast("重新连接失败");
-        }
+    public void Reconnecte() {
+        mqtt_init_Connect();
     }
 
     public void OpenLED(View view) throws MqttException {
